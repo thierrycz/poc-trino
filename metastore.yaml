@@ -47,12 +47,15 @@ spec:
         - name: metastore-cfg-vol
           mountPath: /opt/hadoop/etc/hadoop/core-site.xml
           subPath: core-site.xml
+        - name: metastore-cfg-vol
+          mountPath: /opt/hive-metastore/conf/metastore-log4j2.properties
+          subPath: metastore-log4j2.properties
         command: ["/opt/hive-metastore/bin/start-metastore"]
         args: ["-p", "9083"]
         resources:
           requests:
-            memory: "32G"
-            cpu: 4
+            memory: "1G"
+            cpu: 500m
         imagePullPolicy: Always
       volumes:
         - name: metastore-cfg-vol
