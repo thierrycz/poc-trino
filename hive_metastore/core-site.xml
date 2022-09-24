@@ -4,8 +4,11 @@
 	<value>false</value>
     </property>
     <property>
+        <name>fs.s3a.path.style.access</name>
+	<value>true</value>
+    </property>    <property>
 	<name>fs.s3a.endpoint</name>
-	<value>10.62.64.200</value>
+	<value>minio-service:9000</value>
     </property>
     <property>
 	<name>fs.s3a.fast.upload</name>
