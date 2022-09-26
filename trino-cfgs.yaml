@@ -6,7 +6,7 @@ metadata:
 data:
   jvm.config: |-
     -server
-    -Xmx16G
+    -Xmx1G
     -XX:-UseBiasedLocking
     -XX:+UseG1GC
     -XX:G1HeapRegionSize=32M
@@ -21,33 +21,33 @@ data:
     coordinator=true
     node-scheduler.include-coordinator=false
     http-server.http.port=8080
-    query.max-memory=200GB
-    query.max-memory-per-node=8GB
-    query.max-total-memory-per-node=10GB
-    query.max-stage-count=200
-    task.writer-count=4
+    query.max-memory=300MB
+    query.max-memory-per-node=200MB
+    query.max-total-memory-per-node=500MB
+    query.max-stage-count=4
+    task.writer-count=1
     discovery-server.enabled=true
     discovery.uri=http://trino:8080
   config.properties.worker: |-
     coordinator=false
     http-server.http.port=8080
-    query.max-memory=200GB
-    query.max-memory-per-node=10GB
-    query.max-total-memory-per-node=10GB
-    query.max-stage-count=200
-    task.writer-count=4
+    query.max-memory=300MB
+    query.max-memory-per-node=200MB
+    query.max-total-memory-per-node=500MB
+    query.max-stage-count=4
+    task.writer-count=1
     discovery.uri=http://trino:8080
   node.properties: |-
     node.environment=test
     spiller-spill-path=/tmp
     max-spill-per-node=4TB
-    query-max-spill-per-node=1TB
+    query-max-spill-per-node=1GB
   hive.properties: |-
     connector.name=hive-hadoop2
     hive.metastore.uri=thrift://metastore:9083
     hive.allow-drop-table=true
     hive.max-partitions-per-scan=1000000
-    hive.s3.endpoint=10.62.64.200
+    hive.s3.endpoint=minio-service:9000
     hive.s3.path-style-access=true
     hive.s3.ssl.enabled=false
     hive.s3.max-connections=100
@@ -55,12 +55,12 @@ data:
     connector.name=iceberg
     hive.metastore.uri=thrift://metastore:9083
     hive.max-partitions-per-scan=1000000
-    hive.s3.endpoint=10.62.64.200
+    hive.s3.endpoint=minio-service:9000
     hive.s3.path-style-access=true
     hive.s3.ssl.enabled=false
     hive.s3.max-connections=100
   mysql.properties: |-
     connector.name=mysql
-    connection-url=jdbc:mysql://metastore-db.default.svc.cluster.local:13306
+    connection-url=jdbc:mysql://metastore-db:13306
     connection-user=root
     connection-password=mypass

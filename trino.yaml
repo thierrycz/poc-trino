@@ -61,8 +61,8 @@ spec:
           subPath: mysql.properties
         resources:
           requests:
-            memory: "16G"
-            cpu: 4
+            memory: "1200Mi"
+            cpu: 1
         imagePullPolicy: Always
       volumes:
         - name: trino-cfg-vol
@@ -75,7 +75,7 @@ metadata:
   name: trino-worker
 spec:
   serviceName: trino-worker 
-  replicas: 10
+  replicas: 1
   selector:
     matchLabels:
       app: trino-worker
@@ -125,8 +125,8 @@ spec:
           mountPath: /tmp
         resources:
           requests:
-            memory: "64G"
-            cpu: 12
+            memory: "1100Mi"
+            cpu: 500m
         imagePullPolicy: Always
       volumes:
         - name: trino-cfg-vol
@@ -136,12 +136,12 @@ spec:
   - metadata:
       name: trino-tmp-data
     spec:
-      storageClassName: pure-block
+      storageClassName: standard
       accessModes:
       - ReadWriteOnce
       resources:
         requests:
-          storage: 8Ti
+          storage: 1Gi
 ---
 apiVersion: v1
 kind: Pod
